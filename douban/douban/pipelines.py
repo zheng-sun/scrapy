@@ -31,5 +31,4 @@ class DoubanPipeline(object):
 
         self.cursor.execute(sql, (item['serial_number'], item['title'], item['rating_num'], item['comment'], item['desc'],))
         self.connect.commit()
-
         return item
