@@ -30,11 +30,17 @@ class SearchSpider(scrapy.Spider):
 
         # 获取商品价格
         good_price = self.getGoodMarkprice(good_id)
-
+        good_item['marketPrice'] = good_price['marketPrice']
+        good_item['currentPrice'] = good_price['currentPrice']
         good_item['name'] = response.xpath('//dt[@class="product-title"]/text()').extract_first()
         good_item['orig_country'] = response.xpath('//dt[@class="orig-country"]/span/text()').extract_first()
         good_item['brand'] = response.xpath('//dt[@class="orig-country"]/a/text()').extract_first()
         yield good_item
+
+        # 获取商品评论信息
+        #print('good_id:',good_id)
+        apiUrl = 'https://goods.kaola.com/commentAjax/comment_list_new.json?goodsId='+good_id
+        yield scrapy.Request(apiUrl, callback=self.getGoodComment)
 
     # 通过请求id截取商品id
     def good_url_split(self, goodUrl):
@@ -50,6 +56,23 @@ class SearchSpider(scrapy.Spider):
         res = requests.get(apiUrl, params=params)
         json_requests = res.content.decode()
         dict_json = json.loads(json_requests)
+
+        return_dict = {}
         marketPrice = dict_json['data']['skuPrice']['marketPrice']
+        return_dict['marketPrice'] = marketPrice
         currentPrice = dict_json['data']['skuPrice']['currentPrice']
-        return
+        return_dict['currentPrice'] = currentPrice
+        return return_dict
+
+    # 获取商品评论
+    def getGoodComment(self, response):
+        dict_json = json.loads(response.body)
+        commentPage = dict_json['data']['commentPage']
+        if commentPage['totalCount'] > 0:
+            good_comment_item = kaola.items.KaolaGoodCommentItem()
+            for result in commentPage['result']:
+                good_comment_item['account_id'] = result['accountId']
+                good_comment_item['point'] = result['commentPoint']
+                good_comment_item['commentContent'] = result['commentContent']
+                good_comment_item['createTime'] = result['createTime']
+                yield good_comment_item
