@@ -35,12 +35,19 @@ class KaolaGoodItem(scrapy.Item):
     # 参考价
     marketPrice = scrapy.Field()
     # 税费
-    taxAmoun = scrapy.Field()
+    #taxAmoun = scrapy.Field()
 
 
 # 商品评论信息
 class KaolaGoodCommentItem(scrapy.Item):
-    #商品名称
+    #商品id
+    good_id = scrapy.Field()
+    # 评论id
+    goodsCommentId = scrapy.Field()
+    # 评论设备
+    appType = scrapy.Field()
+    # 订单id
+    orderId = scrapy.Field()
     # 用户名
     account_id = scrapy.Field()
     # 星级
@@ -49,3 +56,7 @@ class KaolaGoodCommentItem(scrapy.Item):
     commentContent = scrapy.Field()
     # 评论时间
     createTime = scrapy.Field()
+    #  修改时间
+    updateTime = scrapy.Field()
+    #  点赞数
+    zanCount = scrapy.Field()

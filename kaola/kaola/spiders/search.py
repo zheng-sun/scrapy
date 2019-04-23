@@ -19,7 +19,12 @@ class SearchSpider(scrapy.Spider):
         # 获取搜索下商品列表
         hreflist = response.xpath('//div[@class="goodswrap promotion"]/a/@href').extract()
         for href in hreflist:
-            yield scrapy.Request(response.urljoin(href), callback=self.parse_good)
+            yield scrapy.Request(response.urljoin(href), callback=self.parse_good, dont_filter=False)
+
+        # 搜索页下一页抓取
+        next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
+        if next_page is not None:
+            yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
 
     # 商品信息
     def parse_good(self, response):
@@ -38,9 +43,13 @@ class SearchSpider(scrapy.Spider):
         yield good_item
 
         # 获取商品评论信息
-        #print('good_id:',good_id)
-        apiUrl = 'https://goods.kaola.com/commentAjax/comment_list_new.json?goodsId='+good_id
+        apiUrl = 'https://goods.kaola.com/commentAjax/comment_list_new.json?goodsId='+good_id + '&pageSize=100'
         yield scrapy.Request(apiUrl, callback=self.getGoodComment)
+
+        # 获取推荐商品信息
+        RecommendGoodUrls = response.xpath('//div[@id="j-listsimilar"]/div/div/a/@href').extract()
+        for GoodUrl in RecommendGoodUrls:
+            yield scrapy.Request(response.urljoin(GoodUrl), callback=self.parse_good, dont_filter=False)
 
     # 通过请求id截取商品id
     def good_url_split(self, goodUrl):
@@ -71,8 +80,26 @@ class SearchSpider(scrapy.Spider):
         if commentPage['totalCount'] > 0:
             good_comment_item = kaola.items.KaolaGoodCommentItem()
             for result in commentPage['result']:
+                good_comment_item['good_id'] = result['goodsId']
+                good_comment_item['goodsCommentId'] = result['goodsCommentId']
+                good_comment_item['appType'] = result['appType']
+                good_comment_item['orderId'] = result['orderId']
                 good_comment_item['account_id'] = result['accountId']
                 good_comment_item['point'] = result['commentPoint']
                 good_comment_item['commentContent'] = result['commentContent']
                 good_comment_item['createTime'] = result['createTime']
+                good_comment_item['updateTime'] = result['updateTime']
+                good_comment_item['zanCount'] = result['zanCount']
                 yield good_comment_item
+
+            # 获取商品评论下一页数据
+            if commentPage['pageNo'] < commentPage['totalPage']:
+                good_id = dict_json['data']['commentStat']['goodsId']
+
+                pageNo = commentPage['pageNo'] + 1
+                pageNo = str(pageNo)
+
+                good_id = str(good_id)
+
+                apiUrl = 'https://goods.kaola.com/commentAjax/comment_list_new.json?goodsId=' + good_id + '&pageSize=100&pageNo='+ pageNo
+                yield scrapy.Request(apiUrl, callback=self.getGoodComment)
