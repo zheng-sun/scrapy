@@ -9,22 +9,46 @@ import kaola.items
 #  获取品牌，分类 https://goods.kaola.com/product/breadcrumbTrail/1301389.json
 #  获取商品价格，活动信息  https://goods.kaola.com/product/getPcGoodsDetailDynamic.json?goodsId=1301389
 #  推荐商品   https://goods.kaola.com/product/getGoodsRecommendInfo.json?goodsId=1301389&accountId=&recommendType=5&t=1555493105258
+#  考拉分类品牌接口 https://search.kaola.com/api/getFrontCategory.shtml
 
 class SearchSpider(scrapy.Spider):
     name = 'search'
     allowed_domains = ['search.kaola.com','goods.kaola.com']
-    start_urls = ['https://search.kaola.com/category/1472/2639.html?key=&pageSize=60&pageNo=1&sortfield=0&isStock=false&isSelfProduct=false&isPromote=false&isTaxFree=false&factoryStoreTag=-1&isCommonSort=false&isDesc=true&b=&proIds=&source=false&country=&needBrandDirect=false&isNavigation=0&lowerPrice=-1&upperPrice=-1&backCategory=&headCategoryId=&changeContent=crumbs_country&#topTab']
+    #start_urls = ['https://search.kaola.com/category/1472/2639.html?key=&pageSize=60&pageNo=1&sortfield=0&isStock=false&isSelfProduct=false&isPromote=false&isTaxFree=false&factoryStoreTag=-1&isCommonSort=false&isDesc=true&b=&proIds=&source=false&country=&needBrandDirect=false&isNavigation=0&lowerPrice=-1&upperPrice=-1&backCategory=&headCategoryId=&changeContent=crumbs_country&#topTab']
+    #start_urls = ['https://search.kaola.com/category/1472.html']
+    start_urls = ['https://search.kaola.com/api/getFrontCategory.shtml']
 
     def parse(self, response):
-        # 获取搜索下商品列表
-        hreflist = response.xpath('//div[@class="goodswrap promotion"]/a/@href').extract()
-        for href in hreflist:
-            yield scrapy.Request(response.urljoin(href), callback=self.parse_good, dont_filter=False)
+        dict_json = json.loads(response.body)
+        frontCategoryList = dict_json['body']['frontCategoryList']
 
-        # 搜索页下一页抓取
-        next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
-        if next_page is not None:
-            yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
+        for categroy in self.handle_children_node_list(frontCategoryList):
+            yield categroy
+
+        # # 获取搜索下商品列表
+        # hreflist = response.xpath('//div[@class="goodswrap promotion"]/a/@href').extract()
+        # for href in hreflist:
+        #     yield scrapy.Request(response.urljoin(href), callback=self.parse_good, dont_filter=False)
+
+        # # 搜索页下一页抓取
+        # next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
+        # if next_page is not None:
+        #     yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
+
+    def handle_children_node_list(self, datalist):
+        for data in datalist:
+            Categoryitem = kaola.items.KaolaCategoryItem()
+            Categoryitem['categoryId'] = data['categoryId']
+            Categoryitem['parentId'] = data['parentId']
+            Categoryitem['categoryLevel'] = data['categoryLevel']
+            Categoryitem['categoryName'] = data['categoryName']
+            Categoryitem['categoryStatus'] = data['categoryStatus']
+            yield Categoryitem
+
+            # 迭代下一层
+            if 'childrenNodeList' in data:
+                for categorys in self.handle_children_node_list(data['childrenNodeList']):
+                    yield categorys
 
     # 商品信息
     def parse_good(self, response):
@@ -95,10 +119,9 @@ class SearchSpider(scrapy.Spider):
             # 获取商品评论下一页数据
             if commentPage['pageNo'] < commentPage['totalPage']:
                 good_id = dict_json['data']['commentStat']['goodsId']
-
                 pageNo = commentPage['pageNo'] + 1
-                pageNo = str(pageNo)
 
+                pageNo = str(pageNo)
                 good_id = str(good_id)
 
                 apiUrl = 'https://goods.kaola.com/commentAjax/comment_list_new.json?goodsId=' + good_id + '&pageSize=100&pageNo='+ pageNo

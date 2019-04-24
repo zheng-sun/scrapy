@@ -8,11 +8,17 @@
 import scrapy
 
 # 分类信息
-class KaolaCategroyItem(scrapy.Item):
-    category_id = scrapy.Field()
-    category_name = scrapy.Field()
-    level = scrapy.Field()
-    pass
+class KaolaCategoryItem(scrapy.Item):
+    # 分类id
+    categoryId = scrapy.Field()
+    # 上级分类id
+    parentId = scrapy.Field()
+    # 分类级别
+    categoryLevel = scrapy.Field()
+    # 分类名称
+    categoryName = scrapy.Field()
+    # 分类状态
+    categoryStatus = scrapy.Field()
 
 # 品牌信息
 class KaolaBrandItem(scrapy.Item):

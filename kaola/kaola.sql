@@ -16,6 +16,18 @@
 CREATE DATABASE IF NOT EXISTS `kaola` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `kaola`;
 
+-- 导出  表 kaola.categorys 结构
+CREATE TABLE IF NOT EXISTS `categorys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) NOT NULL DEFAULT '0' COMMENT '分类id',
+  `parentId` int(11) NOT NULL DEFAULT '0' COMMENT '上级id',
+  `categoryLevel` int(11) NOT NULL DEFAULT '0' COMMENT '分类级别',
+  `categoryName` varchar(100) NOT NULL DEFAULT '0' COMMENT '分类名称',
+  `categoryStatus` tinyint(4) NOT NULL DEFAULT '0' COMMENT '分类状态',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=729 DEFAULT CHARSET=utf8 COMMENT='商品分类id';
+
+-- 数据导出被取消选择。
 -- 导出  表 kaola.goods 结构
 CREATE TABLE IF NOT EXISTS `goods` (
   `good_id` int(11) NOT NULL COMMENT '商品id',

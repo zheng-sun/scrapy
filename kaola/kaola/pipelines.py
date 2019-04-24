@@ -6,7 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
 import pymysql.cursors
-from kaola.items import KaolaGoodItem, KaolaGoodCommentItem
+from kaola.items import KaolaGoodItem, KaolaGoodCommentItem, KaolaCategoryItem
 
 class KaolaPipeline(object):
 
@@ -32,6 +32,9 @@ class KaolaPipeline(object):
         elif isinstance(item, KaolaGoodCommentItem):
             # 商品评论入库
             self.insertGoodComment(item)
+        elif isinstance(item, KaolaCategoryItem):
+            # 商品分类入库
+            self.insertCategory(item)
         return item
 
     # 商品信息入库
@@ -47,4 +50,10 @@ class KaolaPipeline(object):
         self.cursor.execute(sql,
                             (item['good_id'], item['goodsCommentId'], item['appType'], item['orderId'], item['account_id'], item['point'], item['commentContent'], item['createTime'], item['updateTime'], item['zanCount'])
                             )
+        self.connect.commit()
+
+    # 商品分类入库
+    def insertCategory(self, item):
+        sql = """replace into categorys(categoryId, parentId, categoryLevel, categoryName, categoryStatus) values (%s, %s, %s, %s, %s)"""
+        self.cursor.execute(sql, (item['categoryId'], item['parentId'], item['categoryLevel'], item['categoryName'], item['categoryStatus']))
         self.connect.commit()
