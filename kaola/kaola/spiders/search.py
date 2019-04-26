@@ -25,17 +25,18 @@ class SearchSpider(scrapy.Spider):
         for categroy in self.handle_children_node_list(frontCategoryList):
             yield categroy
 
-        # # 获取搜索下商品列表
-        # hreflist = response.xpath('//div[@class="goodswrap promotion"]/a/@href').extract()
-        # for href in hreflist:
-        #     yield scrapy.Request(response.urljoin(href), callback=self.parse_good, dont_filter=False)
+    def parse_search_list(self, response):
+        # 获取搜索下商品列表
+        hreflist = response.xpath('//div[@class="goodswrap promotion"]/a/@href').extract()
+        for href in hreflist:
+            yield scrapy.Request(response.urljoin(href), callback=self.parse_good, dont_filter=False)
 
-        # # 搜索页下一页抓取
-        # next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
-        # if next_page is not None:
-        #     yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
+        # 搜索页下一页抓取
+        next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
+        if next_page is not None:
+            yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
 
-    def handle_children_node_list(self, datalist):
+    def handle_children_node_list(self, datalist, parentId = 0, categoryId = 0):
         for data in datalist:
             Categoryitem = kaola.items.KaolaCategoryItem()
             Categoryitem['categoryId'] = data['categoryId']
@@ -45,9 +46,19 @@ class SearchSpider(scrapy.Spider):
             Categoryitem['categoryStatus'] = data['categoryStatus']
             yield Categoryitem
 
+            #  根据分类id  search 抓取商品数据
+            if data['categoryLevel'] == 2:
+                parentId = data['categoryId']
+
+            if data['categoryLevel'] == 3:
+                categoryId = data['categoryId']
+                #  发送请求
+                HttpsUrl = 'https://search.kaola.com/category/' + str(parentId) + '/' + str(categoryId) + '.html'
+                yield scrapy.Request(HttpsUrl, callback=self.parse_search_list)
+
             # 迭代下一层
             if 'childrenNodeList' in data:
-                for categorys in self.handle_children_node_list(data['childrenNodeList']):
+                for categorys in self.handle_children_node_list(data['childrenNodeList'], parentId, categoryId):
                     yield categorys
 
     # 商品信息
