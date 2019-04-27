@@ -6,7 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
 import pymysql.cursors
-from kaola.items import KaolaGoodItem, KaolaGoodCommentItem, KaolaCategoryItem
+from kaola.items import KaolaGoodItem, KaolaGoodCommentItem, KaolaCategoryItem, KaolaUrlLogItem
 
 class KaolaPipeline(object):
 
@@ -17,7 +17,7 @@ class KaolaPipeline(object):
             port=3306,
             db='kaola',
             user='root',
-            passwd='root',
+            passwd='',
             charset='utf8',
             use_unicode=True
         )
@@ -35,7 +35,15 @@ class KaolaPipeline(object):
         elif isinstance(item, KaolaCategoryItem):
             # 商品分类入库
             self.insertCategory(item)
+        elif isinstance(item, KaolaUrlLogItem):
+            self.insertUrlLog(item)
         return item
+
+    # 爬取地址
+    def insertUrlLog(self, item):
+        sql = """insert into url_log (url, `type`) values (%s, %s)"""
+        self.cursor.execute(sql, (item['url'], item['type']))
+        self.connect.commit()
 
     # 商品信息入库
     def insertGood(self, item):

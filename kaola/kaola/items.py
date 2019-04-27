@@ -7,6 +7,14 @@
 
 import scrapy
 
+
+# 地址信息
+class KaolaUrlLogItem(scrapy.Item):
+    # 地址
+    url = scrapy.Field()
+    # 地址类型
+    type = scrapy.Field()
+
 # 分类信息
 class KaolaCategoryItem(scrapy.Item):
     # 分类id
