@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.14 - MySQL Community Server (GPL)
+-- 服务器版本:                        5.7.24 - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Win64
--- HeidiSQL 版本:                  9.4.0.5125
+-- HeidiSQL 版本:                  10.1.0.5464
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -11,11 +11,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- 导出  表 kaola.brand 结构
+CREATE TABLE IF NOT EXISTS `brand` (
+  `brandId` int(11) NOT NULL DEFAULT '0',
+  `brandName` varchar(100) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`brandId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='品牌';
 
--- 导出 kaola 的数据库结构
-CREATE DATABASE IF NOT EXISTS `kaola` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `kaola`;
-
+-- 数据导出被取消选择。
 -- 导出  表 kaola.categorys 结构
 CREATE TABLE IF NOT EXISTS `categorys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -40,6 +43,25 @@ CREATE TABLE IF NOT EXISTS `goods` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='考拉商品信息表';
 
 -- 数据导出被取消选择。
+-- 导出  表 kaola.good_brand 结构
+CREATE TABLE IF NOT EXISTS `good_brand` (
+  `good_id` int(11) NOT NULL,
+  `brandId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商品品牌';
+
+-- 数据导出被取消选择。
+-- 导出  表 kaola.good_category 结构
+CREATE TABLE IF NOT EXISTS `good_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `good_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品id',
+  `categoryId` int(11) NOT NULL DEFAULT '0' COMMENT '分类id',
+  `categoryName` varchar(50) NOT NULL DEFAULT '0',
+  `level` int(11) NOT NULL DEFAULT '0' COMMENT '分类级别',
+  `leaf` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1393 DEFAULT CHARSET=utf8 COMMENT='商品分类';
+
+-- 数据导出被取消选择。
 -- 导出  表 kaola.good_comment 结构
 CREATE TABLE IF NOT EXISTS `good_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -56,7 +78,17 @@ CREATE TABLE IF NOT EXISTS `good_comment` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `goodsCommentId` (`goodsCommentId`),
   KEY `good_id` (`good_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1470189 DEFAULT CHARSET=utf8 COMMENT='商品评论信息';
+) ENGINE=MyISAM AUTO_INCREMENT=1550083 DEFAULT CHARSET=utf8 COMMENT='商品评论信息';
+
+-- 数据导出被取消选择。
+-- 导出  表 kaola.url_log 结构
+CREATE TABLE IF NOT EXISTS `url_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=32635 DEFAULT CHARSET=utf8;
 
 -- 数据导出被取消选择。
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

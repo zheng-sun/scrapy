@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f1b5a6c-014e-4b2c-8be8-b43e02da18ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/kaola/kaola/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/kaola/kaola/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kaola/kaola/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/kaola/kaola/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kaola/kaola/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kaola/kaola/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kaola/kaola/spiders/categroy.py" beforeDir="false" afterPath="$PROJECT_DIR$/kaola/kaola/spiders/categroy.py" afterDir="false" />
-    </list>
+    <list default="true" id="1f1b5a6c-014e-4b2c-8be8-b43e02da18ad" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +130,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="701" />
     <option name="y" value="17" />
     <option name="width" value="1225" />
@@ -274,15 +269,15 @@
       <workItem from="1554901915163" duration="2610000" />
       <workItem from="1554906661838" duration="5612000" />
       <workItem from="1555337623900" duration="1673000" />
-      <workItem from="1556335123227" duration="20527000" />
+      <workItem from="1556335123227" duration="20898000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37379000" />
+    <option name="totallyTimeSpent" value="37750000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="561" y="14" width="980" height="828" extended-state="0" />
+    <frame x="561" y="14" width="980" height="828" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24295011" />
