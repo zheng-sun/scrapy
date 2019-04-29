@@ -6,7 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
 import pymysql.cursors
-from kaola.items import KaolaGoodItem, KaolaGoodCommentItem, KaolaCategoryItem, KaolaUrlLogItem
+from kaola.items import KaolaGoodItem, KaolaGoodCommentItem, KaolaCategoryItem, KaolaUrlLogItem, KaolaBrandItem, KaolaGoodBrandItem, KaolaGoodCategoryItem
 
 class KaolaPipeline(object):
 
@@ -37,7 +37,31 @@ class KaolaPipeline(object):
             self.insertCategory(item)
         elif isinstance(item, KaolaUrlLogItem):
             self.insertUrlLog(item)
+        elif isinstance(item, KaolaBrandItem):
+            self.insertBrand(item)
+        elif isinstance(item, KaolaGoodBrandItem):
+            self.insertGoodBrand(item)
+        elif isinstance(item, KaolaGoodCategoryItem):
+            self.insertGoodCategory(item)
         return item
+
+    # 品牌
+    def insertBrand(self, item):
+        sql = """replace into brand(brandId,brandName) values (%s, %s)"""
+        self.cursor.execute(sql, (item['brandId'], item['brandName']))
+        self.connect.commit()
+
+    # 商品品牌
+    def insertGoodBrand(self, item):
+        sql = """replace into good_brand(good_id,brandId) values (%s, %s)"""
+        self.cursor.execute(sql, (item['good_id'], item['brandId']))
+        self.connect.commit()
+
+    # 品牌
+    def insertGoodCategory(self, item):
+        sql = """replace into good_category(good_id, categoryId, categoryName, `level`, leaf) values (%s, %s, %s, %s, %s)"""
+        self.cursor.execute(sql, (item['good_id'], item['categoryId'], item['categoryName'], item['level'], item['leaf']))
+        self.connect.commit()
 
     # 爬取地址
     def insertUrlLog(self, item):

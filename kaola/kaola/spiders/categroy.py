@@ -58,6 +58,6 @@ class CategroySpider(scrapy.Spider):
             #yield scrapy.Request(response.urljoin(href), callback=self.parse_good, dont_filter=False)
 
         # 搜索页下一页抓取
-        # next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
-        # if next_page is not None:
-        #     yield scrapy.Request(response.urljoin(next_page), callback=self.parse)
+        next_page = response.xpath('//div[@class="splitPages"]/a[@class="nextPage"]/@href').extract_first()
+        if next_page is not None:
+            yield scrapy.Request(response.urljoin(next_page), callback=self.parse)

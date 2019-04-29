@@ -8,6 +8,30 @@
 import scrapy
 
 
+class KaolaBrandItem(scrapy.Item):
+    # 品牌id
+    brandId = scrapy.Field()
+    # 品牌名称
+    brandName = scrapy.Field()
+
+class KaolaGoodBrandItem(scrapy.Item):
+    # 商品id
+    good_id = scrapy.Field()
+    # 品牌id
+    brandId = scrapy.Field()
+
+class KaolaGoodCategoryItem(scrapy.Item):
+    # 商品id
+    good_id = scrapy.Field()
+    # 分类id
+    categoryId = scrapy.Field()
+    # 分类名称
+    categoryName = scrapy.Field()
+    # 级别
+    level = scrapy.Field()
+
+    leaf = scrapy.Field()
+
 # 地址信息
 class KaolaUrlLogItem(scrapy.Item):
     # 地址
@@ -27,12 +51,6 @@ class KaolaCategoryItem(scrapy.Item):
     categoryName = scrapy.Field()
     # 分类状态
     categoryStatus = scrapy.Field()
-
-# 品牌信息
-class KaolaBrandItem(scrapy.Item):
-    branch_id = scrapy.Field()
-    branch_name = scrapy.Field()
-    pass
 
 # 商品基础信息
 class KaolaGoodItem(scrapy.Item):
