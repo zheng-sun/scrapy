@@ -8,6 +8,7 @@ import pymysql
 import pymysql.cursors
 from kaola.items import KaolaGoodItem, KaolaGoodCommentItem, KaolaCategoryItem, KaolaUrlLogItem, KaolaBrandItem, KaolaGoodBrandItem, KaolaGoodCategoryItem
 
+
 class KaolaPipeline(object):
 
     def __init__(self):
@@ -26,7 +27,6 @@ class KaolaPipeline(object):
 
     def process_item(self, item, spider):
         if isinstance(item, KaolaGoodItem):
-            #pass
             # 商品信息入库
             self.insertGood(item)
         elif isinstance(item, KaolaGoodCommentItem):
