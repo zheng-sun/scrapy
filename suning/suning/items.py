@@ -8,16 +8,20 @@
 import scrapy
 
 class SuningCategoryItem(scrapy.Item):
+    #  分类id
     CategoryId = scrapy.Field()
+    #  分类名称
     CategoryName = scrapy.Field()
+    #  上级id
     parentId = scrapy.Field()
 
 class SuningUrlLogItem(scrapy.Item):
+    #  爬取地址
     url = scrapy.Field()
+    #  爬虫类型
     type = scrapy.Field()
-
+    #  爬虫地址名称
+    title = scrapy.Field()
 
 class SuningItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
     pass

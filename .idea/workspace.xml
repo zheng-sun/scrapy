@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f1b5a6c-014e-4b2c-8be8-b43e02da18ad" name="Default Changelist" comment="" />
+    <list default="true" id="1f1b5a6c-014e-4b2c-8be8-b43e02da18ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/suning/suning/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/suning/suning/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/suning/suning/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/suning/suning/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/suning/suning/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/suning/suning/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/suning/suning/spiders/list.py" beforeDir="false" afterPath="$PROJECT_DIR$/suning/suning/spiders/list.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +38,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/search.py">
+        <entry file="file://$PROJECT_DIR$/suning/suning/spiders/list.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="60" />
+            <state>
+              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -47,35 +52,57 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/categroy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="37" selection-start-line="37" selection-end-line="47" selection-end-column="26" />
-              <folding>
-                <element signature="e#24#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="57">
+              <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/goods.py">
+        <entry file="file://$PROJECT_DIR$/suning/suning/spiders/category.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2413">
-              <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+            <state relative-caret-position="246">
+              <caret line="61" column="86" lean-forward="true" selection-start-line="61" selection-start-column="86" selection-end-line="61" selection-end-column="86" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
+                <element signature="e#237#545#0" />
+                <element signature="e#594#746#0" />
+                <element signature="e#244#380#0" />
+                <element signature="e#412#785#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/good_comment.py">
+        <entry file="file://$PROJECT_DIR$/suning/suning/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+              <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/suning/suning/items.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="17" column="22" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="22" />
               <folding>
-                <element signature="e#24#37#0" expanded="true" />
-                <element signature="e#218#526#0" />
+                <element signature="e#216#307#0" />
+                <element signature="e#429#510#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/suning/suning/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+              <folding>
+                <element signature="e#193#207#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,6 +148,11 @@
         <option value="$PROJECT_DIR$/kaola/kaola/settings.py" />
         <option value="$PROJECT_DIR$/kaola/kaola/spiders/goods.py" />
         <option value="$PROJECT_DIR$/kaola/kaola/spiders/good_comment.py" />
+        <option value="$PROJECT_DIR$/suning/suning/settings.py" />
+        <option value="$PROJECT_DIR$/suning/suning/spiders/list.py" />
+        <option value="$PROJECT_DIR$/suning/suning/pipelines.py" />
+        <option value="$PROJECT_DIR$/suning/suning/items.py" />
+        <option value="$PROJECT_DIR$/suning/suning/spiders/category.py" />
       </list>
     </option>
   </component>
@@ -131,10 +163,9 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="701" />
-    <option name="y" value="17" />
+    <option name="x" value="741" />
     <option name="width" value="1225" />
-    <option name="height" value="1035" />
+    <option name="height" value="1033" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -159,7 +190,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -187,12 +217,27 @@
             </path>
             <path>
               <item name="scrapy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="scrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="suning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="suning" type="462c0819:PsiDirectoryNode" />
+              <item name="suning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="suning" type="462c0819:PsiDirectoryNode" />
+              <item name="suning" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -270,17 +315,17 @@
       <workItem from="1554906661838" duration="5612000" />
       <workItem from="1555337623900" duration="1673000" />
       <workItem from="1556335123227" duration="20898000" />
+      <workItem from="1557243264907" duration="10346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37750000" />
+    <option name="totallyTimeSpent" value="48096000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="561" y="14" width="980" height="828" extended-state="1" />
-    <editor active="true" />
+    <frame x="694" y="0" width="980" height="826" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24295011" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.22776572" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -294,7 +339,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.061781608" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.56772333" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -356,13 +401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/douban/douban/spiders/douban_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/douban/douban/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -419,23 +457,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/getUrlLog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kaola/kaola/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kaola/kaola/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -443,30 +464,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kaola/kaola/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-          <folding>
-            <element signature="e#193#207#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/categroy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="37" selection-start-line="37" selection-end-line="47" selection-end-column="26" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="60" />
+        <state relative-caret-position="228">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="60" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
@@ -475,21 +476,120 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/good_comment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="1197">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
-            <element signature="e#218#526#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kaola/kaola/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1058">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/getUrlLog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="20" column="38" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="38" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/douban/douban/spiders/douban_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/goods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2413">
-          <caret line="127" column="12" lean-forward="true" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+        <state relative-caret-position="140">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/douban/douban/spiders/douban_top_250_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="24" column="49" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kaola/kaola/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="61" column="24" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="24" />
+          <folding>
+            <element signature="e#193#207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/suning/suning/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/suning/suning/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="e#216#307#0" />
+            <element signature="e#429#510#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/suning/suning/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#193#207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kaola/kaola/spiders/categroy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/suning/suning/spiders/list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/suning/suning/spiders/category.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="61" column="86" lean-forward="true" selection-start-line="61" selection-start-column="86" selection-end-line="61" selection-end-column="86" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+            <element signature="e#237#545#0" />
+            <element signature="e#594#746#0" />
+            <element signature="e#244#380#0" />
+            <element signature="e#412#785#0" />
           </folding>
         </state>
       </provider>
