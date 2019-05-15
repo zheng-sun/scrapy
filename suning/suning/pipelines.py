@@ -18,7 +18,7 @@ class SuningPipeline(object):
             port=3306,
             db='suning',
             user='root',
-            passwd='',
+            passwd='root',
             charset='utf8',
             use_unicode=True
         )
@@ -33,6 +33,6 @@ class SuningPipeline(object):
 
     # 爬取地址
     def insertUrlLog(self, item):
-        sql = """replace into url_log (url, `title`, `type`) values (%s, %s, %s)"""
-        self.cursor.execute(sql, (item['url'], item['title'], item['type']))
+        sql = """replace into url_log (url, `title`, `type`, RefererUrl) values (%s, %s, %s, %s)"""
+        self.cursor.execute(sql, (item['url'], item['title'], item['type'], item['RefererUrl']))
         self.connect.commit()

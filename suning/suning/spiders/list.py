@@ -39,8 +39,3 @@ class ListSpider(scrapy.Spider):
                         UrlLogItem['type'] = 'category'
                         yield UrlLogItem
 
-        # allsortLeftLi = response.xpath('//div[@class="allsortLeft"]/ul/li')
-        # for left in allsortLeftLi:
-        #     UrlLogItem = scrapy.items.SuningUrlLogItem()
-        #     UrlLogItem['url'] =
-

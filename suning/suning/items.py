@@ -22,6 +22,8 @@ class SuningUrlLogItem(scrapy.Item):
     type = scrapy.Field()
     #  爬虫地址名称
     title = scrapy.Field()
+    #  爬虫来源地址
+    RefererUrl = scrapy.Field()
 
 class SuningItem(scrapy.Item):
     pass

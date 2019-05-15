@@ -16,7 +16,7 @@ class CategorySpider(scrapy.Spider):
             port=3306,
             db='suning',
             user='root',
-            passwd='',
+            passwd='root',
             charset='utf8',
             use_unicode=True
         )
@@ -45,10 +45,12 @@ class CategorySpider(scrapy.Spider):
         for d in data:
             d_list = list(d)
             return_data.append(d_list[0])
-            self.updateUrlLogStatus(d_list[0])
+            #self.updateUrlLogStatus(d_list[0])
         return return_data
 
     def parse(self, response):
+        print(response.code)
+
         # product_list = response.xpath('//ul[@class="general clearfix"]/li')
         # for product in product_list:
         #     url = product.xpath('div[@class="item-bg"]/div[@class="product-box"]/div[@class="res-info"]/div[@class="title-selling-point"]/a/@href').extract_first()
@@ -59,4 +61,22 @@ class CategorySpider(scrapy.Spider):
         #     UrlLogItem['type'] = 'product'
         #     yield UrlLogItem
 
-        next_page = response.xpath('//div[@class="search-page page-fruits clearfix"]')
+
+        # 获取下一页地址
+        isNextPage = False
+        next_page_list = response.xpath('//div[@class="search-page page-fruits clearfix"]/a/@href').extract()
+        for next_page in next_page_list:
+            if (response.url == response.urljoin(next_page)):
+                isNextPage = True
+                continue
+
+            if (isNextPage) :
+                UrlLogItem = suning.items.SuningUrlLogItem()
+                UrlLogItem['url'] = response.urljoin(next_page)
+                UrlLogItem['title'] = ''
+                UrlLogItem['type'] = 'category'
+                UrlLogItem['RefererUrl'] = response.url
+                yield UrlLogItem
+
+                isNextPage = False
+                break
