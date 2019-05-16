@@ -7,9 +7,9 @@
 import pymysql
 import pymysql.cursors
 from suning.items import SuningUrlLogItem
+from suning.Models.urlLogModel import UrlLogModel
 
 class SuningPipeline(object):
-
 
     def __init__(self):
         # 连接数据库
@@ -28,11 +28,6 @@ class SuningPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item, SuningUrlLogItem):
             # 商品信息入库
-            self.insertUrlLog(item)
+            UrlLogModel().insertUrlLog(item)
         return item
 
-    # 爬取地址
-    def insertUrlLog(self, item):
-        sql = """replace into url_log (url, `title`, `type`, RefererUrl) values (%s, %s, %s, %s)"""
-        self.cursor.execute(sql, (item['url'], item['title'], item['type'], item['RefererUrl']))
-        self.connect.commit()
