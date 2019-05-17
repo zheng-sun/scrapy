@@ -7,8 +7,15 @@ class JingdongSpider(Spider):
     name = 'jingdong'
 
     def __init__(self):
-        self.browser = webdriver.Chrome("D:\\360data\\Anaconda3\\Lib\\site-packages\\selenium\\webdriver\\chromedriver.exe")
+        self.browser = webdriver.PhantomJS("D:\\PythonCode\\scrapy\\phantomjs\\bin\\phantomjs.exe")
         self.browser.set_page_load_timeout(30)
+        # chrome_options = Options()
+        # chrome_options.add_argument('--headless')
+        # chrome_options.add_argument('--disable-gpu')
+        # driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
+        # driver.get("https://www.baidu.com")
+        # print(driver.page_source)
+        # driver.close()
 
     def closed(self,spider):
         print("spider closed")
