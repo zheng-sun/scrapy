@@ -7,7 +7,7 @@ class JingdongSpider(Spider):
     name = 'jingdong'
 
     def __init__(self):
-        self.browser = webdriver.PhantomJS("D:\\PythonCode\\scrapy\\phantomjs\\bin\\phantomjs.exe")
+        self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
         self.browser.set_page_load_timeout(30)
         # chrome_options = Options()
         # chrome_options.add_argument('--headless')
