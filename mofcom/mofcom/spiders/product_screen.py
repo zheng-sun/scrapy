@@ -9,12 +9,12 @@ class ProductScreenSpider(Spider):
     #start_urls = ['']
 
     def __init__(self):
-        # chrome_options = Options()
-        # chrome_options.add_argument('--headless')
-        # chrome_options.add_argument('--disable-gpu')
-        # driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
-        self.browser = webdriver.Chrome("D:\\PythonCode\\scrapy\\chromedriver_74.exe")
-        #self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
+        #chrome_options = Options()
+        #chrome_options.add_argument('--headless')
+        #chrome_options.add_argument('--disable-gpu')
+        #self.browser = webdriver.Chrome(executable_path='E:\\PythonCode\\scrapy\\chromedriver_73.exe"', chrome_options=chrome_options)
+        #self.browser = webdriver.Chrome("D:\\PythonCode\\scrapy\\chromedriver_74.exe")
+        self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
         self.browser.set_page_load_timeout(30)
 
     def closed(self, spider):

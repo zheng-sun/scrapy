@@ -34,6 +34,6 @@ class Add(DB):
 
     # 地址
     def insertReptile(self, item):
-        sql = """insert into reptile ( `url`, `code`) values ( %s, %s)"""
-        self.cursor.execute(sql, (item['url'], item['code']))
+        sql = """insert into reptile ( `spider_name`, `url`, `code`) values ( %s, %s, %s)"""
+        self.cursor.execute(sql, (item['spider_name'], item['url'], item['code']))
         self.connect.commit()

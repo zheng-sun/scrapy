@@ -37,5 +37,6 @@ class ProductPriceHistoryItem(scrapy.Item):
     market = scrapy.Field()
 
 class ReptileUrlItem(scrapy.Item):
+    spider_name = scrapy.Field()
     url = scrapy.Field()
     code = scrapy.Field()

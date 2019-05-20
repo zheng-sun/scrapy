@@ -9,8 +9,11 @@ from scrapy import signals
 from scrapy.http import HtmlResponse
 from selenium.common.exceptions import TimeoutException
 import time
+import mofcom.items
+from mofcom.Models.Add import Add
 
 class SeleniumMiddleware(object):
+
     def process_request(self, request, spider):
         if spider.name == 'product_screen':
             try:
@@ -22,6 +25,19 @@ class SeleniumMiddleware(object):
             time.sleep(2)
             return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source,
                                 encoding="utf-8", request=request)
+
+    def process_response(self, request, response, spider):
+        # print(response)
+        # print(response.status)
+        # print(type(response))
+        spider.logger.info('SeleniumMiddleware process_response')
+        ReptileUrlItem = {}
+        ReptileUrlItem['spider_name'] = spider.name
+        ReptileUrlItem['url'] = response.url
+        ReptileUrlItem['code'] = response.status
+        Add().insertReptile(ReptileUrlItem)
+
+        return response
 
 class MofcomSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
