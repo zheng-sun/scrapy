@@ -13,7 +13,8 @@ class ProductScreenSpider(Spider):
         # chrome_options.add_argument('--headless')
         # chrome_options.add_argument('--disable-gpu')
         # driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
-        self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
+        self.browser = webdriver.Chrome("D:\\PythonCode\\scrapy\\chromedriver_74.exe")
+        #self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
         self.browser.set_page_load_timeout(30)
 
     def closed(self, spider):
@@ -43,34 +44,63 @@ class ProductScreenSpider(Spider):
         # 获取产品
         par_craft_index_select = response.xpath('//select[@id="par_craft_index"]/option')
         for par_craft_index_option in par_craft_index_select:
-            par_craft_index_value = par_craft_index_option.xpath('@value').extract_first()
-            par_craft_index_name = par_craft_index_option.xpath('text()').extract_first()
-            if par_craft_index_value is not '':
-                ParCraftIndexItem = mofcom.items.ParCraftIndexItem()
-                ParCraftIndexItem['value'] = par_craft_index_value
-                ParCraftIndexItem['name'] = par_craft_index_name
-                ParCraftIndexItem['paradid'] = '0'
-                yield ParCraftIndexItem
+            category_id = par_craft_index_option.xpath('@value').extract_first()
+            name = par_craft_index_option.xpath('text()').extract_first()
+            if category_id is not '':
+                CategoryItem = mofcom.items.CategoryItem()
+                CategoryItem['category_id'] = category_id
+                CategoryItem['name'] = name
+                yield CategoryItem
 
                 # 循环抓取下级农产品分类
-                next_page = "http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index=" + str(par_craft_index_value)
+                next_page = "http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index=" + str(category_id)
                 yield Request(url=next_page, callback=self.craft_index_parse)
 
-        # 获取城市
+        # 获取区域
+        par_p_index_select = response.xpath('//select[@id="par_p_index"]/option')
+        for par_p_index_option in par_p_index_select:
+            region_id = par_p_index_option.xpath('@value').extract_first()
+            name = par_p_index_option.xpath('text()').extract_first()
+            if region_id is not '':
+                RegionItem = mofcom.items.RegionItem()
+                RegionItem['region_id'] = region_id
+                RegionItem['name'] = name
+                yield RegionItem
 
+                # 获取区域下的市场
+                next_page = "http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_p_index=" + str(region_id)
+                yield Request(url=next_page, callback=self.p_index_parse)
+
+    # 获取市场信息
+    def p_index_parse(self, response):
+        # url 截取出参数
+        region_id = self.getParam(response.url, 'par_p_index')
+        # 获取下级市场
+        p_index_select = response.xpath('//select[@id="p_index"]/option')
+        for p_index_option in p_index_select:
+            market_id = p_index_option.xpath('@value').extract_first()
+            name = p_index_option.xpath('text()').extract_first()
+            if market_id is not '':
+                MarkerItem = mofcom.items.MarkerItem()
+                MarkerItem['market_id'] = market_id
+                MarkerItem['name'] = name
+                MarkerItem['region_id'] = region_id
+                yield MarkerItem
+
+    #  获取产品信息
     def craft_index_parse(self, response):
         # url 截取出参数
-        par_craft_index_id = self.getParam(response.url, 'par_craft_index')
+        category_id = self.getParam(response.url, 'par_craft_index')
         # 获取下级产品
         craft_index_select = response.xpath('//select[@id="craft_index"]/option')
         for craft_index_option in craft_index_select:
-            craft_index_value = craft_index_option.xpath('@value').extract_first()
-            craft_index_name = craft_index_option.xpath('text()').extract_first()
-            if craft_index_value is not '':
-                ParCraftIndexItem = mofcom.items.ParCraftIndexItem()
-                ParCraftIndexItem['value'] = craft_index_value
-                ParCraftIndexItem['name'] = craft_index_name
-                ParCraftIndexItem['paradid'] = par_craft_index_id
-                yield ParCraftIndexItem
+            product_id = craft_index_option.xpath('@value').extract_first()
+            name = craft_index_option.xpath('text()').extract_first()
+            if product_id is not '':
+                ProductItem = mofcom.items.ProductItem()
+                ProductItem['product_id'] = product_id
+                ProductItem['name'] = name
+                ProductItem['category_id'] = category_id
+                yield ProductItem
 
 

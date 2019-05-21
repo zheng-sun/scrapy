@@ -7,13 +7,35 @@
 
 import scrapy
 
-# 产品
-class ParCraftIndexItem(scrapy.Item):
-    value = scrapy.Field()
+# 分类
+class CategoryItem(scrapy.Item):
+    category_id = scrapy.Field()
     name = scrapy.Field()
-    paradid = scrapy.Field()
 
-class MofcomItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+# 产品
+class ProductItem(scrapy.Item):
+    product_id = scrapy.Field()
+    category_id = scrapy.Field()
+    name = scrapy.Field()
+
+# 区域
+class RegionItem(scrapy.Item):
+    region_id = scrapy.Field()
+    name = scrapy.Field()
+
+# 市场
+class MarkerItem(scrapy.Item):
+    market_id = scrapy.Field()
+    region_id = scrapy.Field()
+    name = scrapy.Field()
+
+# 商品价格历史
+class ProductPriceHistoryItem(scrapy.Item):
+    date = scrapy.Field()
+    product = scrapy.Field()
+    price = scrapy.Field()
+    market = scrapy.Field()
+
+class ReptileUrlItem(scrapy.Item):
+    url = scrapy.Field()
+    code = scrapy.Field()
