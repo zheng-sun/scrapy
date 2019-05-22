@@ -9,9 +9,9 @@ class DB(object):
             port=3306,
             db='mofcom',
             user='root',
-            passwd='',
+            passwd='root',
             charset='utf8',
             use_unicode=True
         )
         # 通过cursor 执行sql
-        self.cursor = self.connect.cursor()
+        self.cursor = self.connect.cursor(cursor=pymysql.cursors.DictCursor)
