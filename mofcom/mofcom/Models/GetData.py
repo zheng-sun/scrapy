@@ -23,7 +23,12 @@ class GetData(DB):
         return self.cursor.fetchall()
 
     def getReptile(self, code, spider_name):
-        sql = """select url from reptile where code = %s and spider_name = %s limit 10"""
+        sql = """select url from reptile where code = %s and spider_name = %s limit 1"""
         self.cursor.execute(sql, (code, spider_name))
         return self.cursor.fetchall()
+
+    def getReptileByUrl(self, url):
+        sql = """select * from reptile where url = %s"""
+        self.cursor.execute(sql, ( url ))
+        return self.cursor.fetchone()
 

@@ -9,7 +9,7 @@ class DB(object):
             port=3306,
             db='mofcom',
             user='root',
-            passwd='root',
+            passwd='',
             charset='utf8',
             use_unicode=True
         )

@@ -28,8 +28,8 @@ class Add(DB):
 
     # 商品价格历史
     def insertProductPriceHistory(self, item):
-        sql = """replace into product_price_history ( `date`, `product`, `price`, `market`) values ( %s, %s, %s, %s)"""
-        self.cursor.execute(sql, (item['date'], item['product'], item['price'], item['market']))
+        sql = """replace into product_price_history ( `date`, `product`, `price`, `market`, `region_id`) values ( %s, %s, %s, %s)"""
+        self.cursor.execute(sql, (item['date'], item['product'], item['price'], item['market'], item['region_id']))
         self.connect.commit()
 
     # 地址

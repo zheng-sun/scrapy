@@ -15,7 +15,6 @@ from mofcom.Models.Add import Add
 class SeleniumMiddleware(object):
 
     def process_request(self, request, spider):
-
         return None
         # if spider.name == 'product_screen':
         #     try:
@@ -29,16 +28,12 @@ class SeleniumMiddleware(object):
         #                         encoding="utf-8", request=request)
 
     def process_response(self, request, response, spider):
-        # print(response)
-        # print(response.status)
-        # print(type(response))
-        spider.logger.info('SeleniumMiddleware process_response')
+        # spider.logger.info('SeleniumMiddleware process_response')
         # ReptileUrlItem = {}
         # ReptileUrlItem['spider_name'] = spider.name
         # ReptileUrlItem['url'] = response.url
         # ReptileUrlItem['code'] = response.status
         # Add().insertReptile(ReptileUrlItem)
-
         return response
 
 class MofcomSpiderMiddleware(object):
