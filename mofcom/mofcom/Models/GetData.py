@@ -21,3 +21,9 @@ class GetData(DB):
         sql = """select * from market"""
         self.cursor.execute(sql)
         return self.cursor.fetchall()
+
+    def getReptile(self, code, spider_name):
+        sql = """select url from reptile where code = %s and spider_name = %s limit 10"""
+        self.cursor.execute(sql, (code, spider_name))
+        return self.cursor.fetchall()
+
