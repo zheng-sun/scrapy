@@ -2,7 +2,7 @@ from mofcom.Models.GetData import GetData
 from mofcom.Models.Add import Add
 import datetime
 from dateutil.relativedelta import relativedelta
-
+import time
 
 # data = GetData().getReptile('0', 'price_list')
 # print(data)
@@ -54,10 +54,12 @@ def main():
 
     #  循环添加地址
     i = 1
+    j = 0
     for product in region_product_list:
+        print('开始生成链接 product_id:',product['product_id'],', category_id:',product['category_id'],', region_id:',product['region_id'])
         for date in while_date:
-            print("rows:", i)
-            i+=1
+            print("rows:", i, 'start_date:', date['start_date'], ', end_date:', date['end_date'])
+            i += 1
             item = {}
             item['spider_name'] = 'price_list'
             item['url'] = 'http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index='+str(product['category_id'])+'&craft_index='+str(product['product_id'])+'&par_p_index='+str(product['region_id'])+'&startTime='+str(date['start_date'])+'&endTime='+str(date['end_date'])
@@ -65,8 +67,13 @@ def main():
 
             getOne = GetData().getReptileByUrl(item['url'])
             if getOne is None:
+                j += 1
                 print(item)
                 Add().insertReptile(item)
+
+        if j > 0:
+            print('暂停5秒')
+            time.sleep(5)  #  暂停5秒
 
 if __name__ == "__main__":
     main()

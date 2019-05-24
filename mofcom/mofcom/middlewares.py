@@ -15,17 +15,17 @@ from mofcom.Models.Add import Add
 class SeleniumMiddleware(object):
 
     def process_request(self, request, spider):
-        return None
-        # if spider.name == 'product_screen':
-        #     try:
-        #         spider.browser.get(request.url)
-        #         spider.browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
-        #     except TimeoutException as e:
-        #         print('超时')
-        #         spider.browser.execute_script('window.stop()')
-        #     time.sleep(2)
-        #     return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source,
-        #                         encoding="utf-8", request=request)
+        # return None
+        if spider.name == 'price_list':
+            try:
+                spider.browser.get(request.url)
+                spider.browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+            except TimeoutException as e:
+                print('超时')
+                spider.browser.execute_script('window.stop()')
+            time.sleep(2)
+            return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source,
+                                encoding="utf-8", request=request)
 
     def process_response(self, request, response, spider):
         # spider.logger.info('SeleniumMiddleware process_response')

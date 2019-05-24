@@ -30,8 +30,7 @@ class ProductScreenSpider(Spider):
             for param in params:
                 p = param.split('=')
                 para[p[0]] = p[1]
-
-        if para[file] is not None:
+        if file in para:
             return para[file]
         return ''
 

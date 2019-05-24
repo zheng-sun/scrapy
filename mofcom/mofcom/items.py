@@ -33,9 +33,10 @@ class MarkerItem(scrapy.Item):
 class ProductPriceHistoryItem(scrapy.Item):
     date = scrapy.Field()
     product = scrapy.Field()
-    region_id = scrapy.Field()
     price = scrapy.Field()
+    unit = scrapy.Field()
     market = scrapy.Field()
+    region_id = scrapy.Field()
 
 class ReptileUrlItem(scrapy.Item):
     spider_name = scrapy.Field()
