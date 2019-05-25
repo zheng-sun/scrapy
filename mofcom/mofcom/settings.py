@@ -14,6 +14,8 @@ BOT_NAME = 'mofcom'
 SPIDER_MODULES = ['mofcom.spiders']
 NEWSPIDER_MODULE = 'mofcom.spiders'
 
+#LOG_ENABLED = True
+#LOG_FILE = 'E:\PythonCode\scrapy\mofcom\logs\mofcom.log'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
@@ -22,7 +24,7 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 36
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay

@@ -16,7 +16,7 @@ class ListSpider(scrapy.Spider):
             port=3306,
             db='suning',
             user='root',
-            passwd='root',
+            passwd='',
             charset='utf8',
             use_unicode=True
         )

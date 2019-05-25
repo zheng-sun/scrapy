@@ -28,12 +28,12 @@ class SeleniumMiddleware(object):
                                 encoding="utf-8", request=request)
 
     def process_response(self, request, response, spider):
-        # spider.logger.info('SeleniumMiddleware process_response')
-        # ReptileUrlItem = {}
-        # ReptileUrlItem['spider_name'] = spider.name
-        # ReptileUrlItem['url'] = response.url
-        # ReptileUrlItem['code'] = response.status
-        # Add().insertReptile(ReptileUrlItem)
+        spider.logger.info('SeleniumMiddleware process_response, request_url: %s, response_code: %s, spider: %s',request.url, response.status, spider.name)
+        ReptileUrlItem = {}
+        ReptileUrlItem['spider_name'] = spider.name
+        ReptileUrlItem['url'] = response.url
+        ReptileUrlItem['code'] = response.status
+        Add().insertReptile(ReptileUrlItem)
         return response
 
 class MofcomSpiderMiddleware(object):

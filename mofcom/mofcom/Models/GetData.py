@@ -2,33 +2,42 @@ from mofcom.Models.db import DB
 
 class GetData(DB):
 
+    def __del__(self):
+        self.dispose(1)
+
     def getCategory(self):
         sql = """select * from category"""
-        self.cursor.execute(sql)
-        return self.cursor.fetchall()
+        return self.get_many(sql)
+        # self.cursor.execute(sql)
+        # return self.cursor.fetchall()
 
     def getProduct(self):
         sql = """select * from product"""
-        self.cursor.execute(sql)
-        return self.cursor.fetchall()
+        return self.get_many(sql)
+        # self.cursor.execute(sql)
+        # return self.cursor.fetchall()
 
     def getRegion(self):
         sql = """select * from region"""
-        self.cursor.execute(sql)
-        return self.cursor.fetchall()
+        return self.get_many(sql)
+        # self.cursor.execute(sql)
+        # return self.cursor.fetchall()
 
     def getMarket(self):
         sql = """select * from market"""
-        self.cursor.execute(sql)
-        return self.cursor.fetchall()
+        return self.get_many(sql)
+        # self.cursor.execute(sql)
+        # return self.cursor.fetchall()
 
-    def getReptile(self, code, spider_name):
-        sql = """select url from reptile where code = %s and spider_name = %s limit 32"""
-        self.cursor.execute(sql, (code, spider_name))
-        return self.cursor.fetchall()
+    def getReptile(self, param):
+        sql = """select url from reptile where code = %s and spider_name = %s"""
+        return self.get_many(sql, (param['code'], param['spider_name']), 1)
+        # self.cursor.execute(sql, (code, spider_name))
+        # return self.cursor.fetchall()
 
-    def getReptileByUrl(self, url):
+    def getReptileByUrl(self, param):
         sql = """select * from reptile where url = %s"""
-        self.cursor.execute(sql, ( url ))
-        return self.cursor.fetchone()
+        return self.get_count(sql, param)
+        # self.cursor.execute(sql, ( url ))
+        # return self.cursor.fetchone()
 

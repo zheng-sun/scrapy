@@ -10,7 +10,13 @@ import time
 def handles_region_product():
     data_list = []
     product_list = GetData().getProduct()
+    # print('product_list:')
+    # print(product_list)
+    # print(len(product_list))
     region_list = GetData().getRegion()
+    # print('region_list:')
+    # print(region_list)
+    # print(len(region_list))
     if product_list is not None:
         for product_data in product_list:
             if region_list is not None:
@@ -51,29 +57,22 @@ def main():
     end_date = datetime.datetime.now().strftime('%Y-%m-%d')
     region_product_list = handles_region_product()
     while_date = while_datetime(start_date, end_date)
-
-    #  循环添加地址
-    i = 1
-    j = 0
-    for product in region_product_list:
-        print('开始生成链接 product_id:',product['product_id'],', category_id:',product['category_id'],', region_id:',product['region_id'])
+    while len(region_product_list) > 0:
+        product = region_product_list.pop()
         for date in while_date:
-            print("rows:", i, 'start_date:', date['start_date'], ', end_date:', date['end_date'])
-            i += 1
+            print('开始生成链接 product_id:', product['product_id'], ', category_id:', product['category_id'], ', region_id:',product['region_id'])
             item = {}
             item['spider_name'] = 'price_list'
             item['url'] = 'http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index='+str(product['category_id'])+'&craft_index='+str(product['product_id'])+'&par_p_index='+str(product['region_id'])+'&startTime='+str(date['start_date'])+'&endTime='+str(date['end_date'])
             item['code'] = '0'
 
-            getOne = GetData().getReptileByUrl(item['url'])
-            if getOne is None:
-                j += 1
+            getOne = GetData().getReptileByUrl([item['url']])
+            if getOne == 0:
                 print(item)
                 Add().insertReptile(item)
 
-        if j > 0:
-            print('暂停5秒')
-            time.sleep(5)  #  暂停5秒
+        print('暂停5秒')
+        time.sleep(5)
 
 if __name__ == "__main__":
     main()
