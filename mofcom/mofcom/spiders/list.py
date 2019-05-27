@@ -4,8 +4,6 @@ from selenium import webdriver
 import mofcom.items
 from mofcom.Models.GetData import GetData
 import time
-# from scrapy.xlib.pydispatch import dispatcher   # 信号分发器
-# from scrapy import signals                      # 信号
 
 class ListSpider(Spider):
     name = 'price_list'
@@ -14,7 +12,7 @@ class ListSpider(Spider):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        self.browser = webdriver.Chrome(executable_path='E:\\PythonCode\\scrapy\\chromedriver_73.exe', chrome_options=chrome_options)
+        self.browser = webdriver.Chrome(executable_path='D:\\PythonCode\\scrapy\\chromedriver_74.exe', chrome_options=chrome_options)
         #self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
         self.browser.set_page_load_timeout(120)
 
@@ -77,8 +75,6 @@ class ListSpider(Spider):
         else:  #本页抓取完成,开启下一页
             self.logger.info("succes response url:%s", response.url)
             start_urls = GetData().getReptile({"code": '0', "spider_name": 'price_list'})
-            print('next_page')
-            print(start_urls)
             if start_urls is not False:
                 for url in start_urls:
                     yield Request(url=url['url'], callback=self.parse)

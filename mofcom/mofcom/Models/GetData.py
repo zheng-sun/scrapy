@@ -31,7 +31,7 @@ class GetData(DB):
 
     def getReptile(self, param):
         sql = """select url from reptile where code = %s and spider_name = %s"""
-        return self.get_many(sql, (param['code'], param['spider_name']), 1)
+        return self.get_many(sql, (param['code'], param['spider_name']), 32)
         # self.cursor.execute(sql, (code, spider_name))
         # return self.cursor.fetchall()
 

@@ -3,9 +3,21 @@ from mofcom.Models.Add import Add
 import datetime
 from dateutil.relativedelta import relativedelta
 import time
+import logging
 
-# data = GetData().getReptile('0', 'price_list')
-# print(data)
+# 写入日志
+def get_logger():
+    log_dir = 'mofcom/logs/main.log'
+    fh = logging.FileHandler(log_dir, encoding='utf-8') #创建一个文件流并设置编码utf8
+    logger = logging.getLogger() #获得一个logger对象，默认是root
+    logger.setLevel(logging.DEBUG)  #设置最低等级debug
+    fm = logging.Formatter("%(asctime)s %(filename)s[line:%(lineno)d]%(levelname)s - %(message)s")  #设置日志格式
+    logger.addHandler(fh) #把文件流添加进来，流向写入到文件
+    fh.setFormatter(fm) #把文件流添加写入格式
+    return logger
+
+logger = get_logger()
+
 # 循环获取需要读取的链接
 def handles_region_product():
     data_list = []
@@ -60,7 +72,8 @@ def main():
     while len(region_product_list) > 0:
         product = region_product_list.pop()
         for date in while_date:
-            print('开始生成链接 product_id:', product['product_id'], ', category_id:', product['category_id'], ', region_id:',product['region_id'])
+            logger.info('开始生成链接 product_id: %s , category_id: %s , region_id: %s', product['product_id'], product['category_id'], product['region_id'])
+
             item = {}
             item['spider_name'] = 'price_list'
             item['url'] = 'http://nc.mofcom.gov.cn/channel/jghq2017/price_list.shtml?par_craft_index='+str(product['category_id'])+'&craft_index='+str(product['product_id'])+'&par_p_index='+str(product['region_id'])+'&startTime='+str(date['start_date'])+'&endTime='+str(date['end_date'])
@@ -68,11 +81,11 @@ def main():
 
             getOne = GetData().getReptileByUrl([item['url']])
             if getOne == 0:
-                print(item)
+                logger.info("生成链接: %s ", item['url'])
                 Add().insertReptile(item)
-
-        print('暂停5秒')
+        logger.info('暂停5秒')
         time.sleep(5)
+    logger.info('链接生成完成,一共生成')
 
 if __name__ == "__main__":
     main()

@@ -35,7 +35,7 @@ class DB(object):
                               host='127.0.0.1',
                               port=3306,
                               user='root',
-                              passwd='',
+                              passwd='root',
                               db='mofcom',
                               charset='utf8')
         return __pool.connection()
