@@ -2,8 +2,10 @@ from mofcom.Models.db import DB
 
 class GetData(DB):
 
-    def __del__(self):
-        self.dispose(1)
+    # def __init__(self):
+    #     super().__init__()
+    # def __del__(self):
+    #     self.end()
 
     def getCategory(self):
         sql = """select * from category"""

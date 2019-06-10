@@ -2,43 +2,16 @@ import pymysql
 import pymysql.cursors
 from DBUtils.PooledDB import PooledDB
 import traceback
+from mofcom.Config.PoolDBConfig import DBPoolConfig
 
 class DB(object):
     # 连接池对象
     __pool = None
 
     def __init__(self):
-        # 连接数据库
-        self._conn = DB.db_connect()
+        # 连接数据库update
+        self._conn = DBPoolConfig.MYSQL_POOL.connection()
         self._cursor = self._conn.cursor(cursor=pymysql.cursors.DictCursor)
-
-        # self.connect = pymysql.connect(
-        #     host='127.0.0.1',
-        #     port=3306,
-        #     db='mofcom',
-        #     user='root',
-        #     passwd='',
-        #     charset='utf8',
-        #     use_unicode=True
-        # )
-        # # 通过cursor 执行sql
-        # self.cursor = self.connect.cursor(cursor=pymysql.cursors.DictCursor)
-        # print('创建数据库连接')
-
-    # 连接数据库
-    @staticmethod
-    def db_connect():
-        if DB.__pool is None:
-            __pool = PooledDB(creator=pymysql,
-                              mincached=1,
-                              maxcached=20,
-                              host='127.0.0.1',
-                              port=3306,
-                              user='root',
-                              passwd='root',
-                              db='mofcom',
-                              charset='utf8')
-        return __pool.connection()
 
     # 查询所有数据
     def get_all(self, sql, param=None):

@@ -72,6 +72,7 @@ def main():
     while len(region_product_list) > 0:
         product = region_product_list.pop()
         for date in while_date:
+            print('开始生成链接 product_id: %s , category_id: %s , region_id: %s', product['product_id'], product['category_id'], product['region_id'])
             logger.info('开始生成链接 product_id: %s , category_id: %s , region_id: %s', product['product_id'], product['category_id'], product['region_id'])
 
             item = {}

@@ -3,7 +3,7 @@ from mofcom.Models.db import DB
 class Add(DB):
 
     def __del__(self):
-        self.dispose(1)
+        self.end()
 
     # 分类
     def insertCategory(self, item):

@@ -1,50 +1,18 @@
-# from scrapy import cmdline
-# import os
-# import threading
-# import time
+import multiprocessing
+#import threading
+#import os
+from scrapy import cmdline
+#from concurrent.futures import ThreadPoolExecutor
 
-#os.system('python main.py')
-# cmdline.execute('scrapy crawl price_list'.split())
+def action(number):
+    print('start price_list crawl', str(number))
+    cmdline.execute('scrapy crawl price_list'.split())
 
-import threading
-import time
+if __name__ == '__main__':
+    with multiprocessing.Pool(processes=4) as pool:
+        # 使用线程执行map计算
+        # 后面元组有3个元素，因此程序启动3条进程来执行action函数
+        results = pool.map(action, (1, 2, 3))
+        print('--------------')
 
-class myThread (threading.Thread):
-    def __init__(self, threadID, name, counter):
-        threading.Thread.__init__(self)
-        self.threadID = threadID
-        self.name = name
-        self.counter = counter
-    def run(self):
-        print ("开启线程： " + self.name)
-        # 获取锁，用于线程同步
-        threadLock.acquire()
-        print_time(self.name, self.counter, 3)
-        # 释放锁，开启下一个线程
-        threadLock.release()
 
-def print_time(threadName, delay, counter):
-    while counter:
-        time.sleep(delay)
-        print ("%s: %s" % (threadName, time.ctime(time.time())))
-        counter -= 1
-
-threadLock = threading.Lock()
-threads = []
-
-# 创建新线程
-thread1 = myThread(1, "Thread-1", 1)
-thread2 = myThread(2, "Thread-2", 2)
-
-# 开启新线程
-thread1.start()
-thread2.start()
-
-# 添加线程到线程列表
-threads.append(thread1)
-threads.append(thread2)
-
-# 等待所有线程完成
-for t in threads:
-    t.join()
-print ("退出主线程")
