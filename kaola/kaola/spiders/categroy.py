@@ -15,7 +15,7 @@ class CategroySpider(scrapy.Spider):
             port=3306,
             db='kaola',
             user='root',
-            passwd='',
+            passwd='root',
             charset='utf8',
             use_unicode=True
         )

@@ -8,7 +8,7 @@ import time
 class ListSpider(Spider):
     name = 'price_list'
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')

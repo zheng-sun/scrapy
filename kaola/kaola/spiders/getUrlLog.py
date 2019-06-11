@@ -8,6 +8,10 @@ class GeturllogSpider(scrapy.Spider):
     allowed_domains = ['search.kaola.com']
     start_urls = ['https://search.kaola.com/api/getFrontCategory.shtml']
 
+    def __init__(self, name=None, **kwargs):
+        kwargs.pop('_job')
+        super(GeturllogSpider, self).__init__(name, **kwargs)
+
     def parse(self, response):
         dict_json = json.loads(response.body)
         frontCategoryList = dict_json['body']['frontCategoryList']

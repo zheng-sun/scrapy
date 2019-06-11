@@ -14,8 +14,8 @@ BOT_NAME = 'mofcom'
 SPIDER_MODULES = ['mofcom.spiders']
 NEWSPIDER_MODULE = 'mofcom.spiders'
 
-LOG_ENABLED = False
-LOG_FILE = 'D:\PythonCode\scrapy\mofcom\mofcom\logs\mofcom.log'
+# LOG_ENABLED = False
+# LOG_FILE = 'D:\PythonCode\scrapy\mofcom\mofcom\logs\mofcom.log'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
@@ -58,7 +58,7 @@ DOWNLOADER_MIDDLEWARES = {
    'mofcom.middlewares.SeleniumMiddleware': 543,
 }
 
-# Enable or disable extensions
+# Enable or disable extensionshaox
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,

@@ -16,7 +16,7 @@ class SeleniumMiddleware(object):
 
     def process_request(self, request, spider):
         # return None
-        if spider.name == 'price_list':
+        if spider.name == 'product_screen':
             try:
                 spider.browser.get(request.url)
                 spider.browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
