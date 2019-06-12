@@ -8,11 +8,12 @@ import time
 class ListSpider(Spider):
     name = 'price_list'
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        self.browser = webdriver.Chrome(executable_path='D:\\PythonCode\\scrapy\\chromedriver_74.exe', chrome_options=chrome_options)
+        #D:\\PythonCode\\scrapy\\chromedriver_74.exe
+        self.browser = webdriver.Chrome(executable_path='E:\\PythonCode\\scrapy\\chromedriver_73.exe', chrome_options=chrome_options)
         #self.browser = webdriver.Chrome("E:\\PythonCode\\scrapy\\chromedriver_73.exe")
         self.browser.set_page_load_timeout(120)
 
