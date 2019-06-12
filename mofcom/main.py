@@ -7,7 +7,7 @@ import logging
 
 # 写入日志
 def get_logger():
-    log_dir = 'mofcom/logs/main.log'
+    log_dir = 'logs/main.log'
     fh = logging.FileHandler(log_dir, encoding='utf-8') #创建一个文件流并设置编码utf8
     logger = logging.getLogger() #获得一个logger对象，默认是root
     logger.setLevel(logging.DEBUG)  #设置最低等级debug

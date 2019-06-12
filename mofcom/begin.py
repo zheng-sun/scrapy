@@ -15,4 +15,23 @@ if __name__ == '__main__':
         results = pool.map(action, (1, 2, 3))
         print('--------------')
 
+# from scrapy.crawler import CrawlerProcess
+# from mofcom.spiders.list import ListSpider as price_list_spider
+# from mofcom.spiders.product_screen import ProductScreenSpider as product_screen_spider
+# from scrapy.utils.project import get_project_settings
+#
+# def start_spider():
+#     try:
+#         process = CrawlerProcess(get_project_settings())
+#         process.crawl(price_list_spider)
+#         process.crawl(price_list_spider)
+#         process.crawl(price_list_spider)
+#         process.crawl(price_list_spider)
+#         process.start()
+#     except Exception as e:
+#         print('---出现错误---', e)
+#
+# if __name__ == '__main__':
+#     start_spider()
+
 
