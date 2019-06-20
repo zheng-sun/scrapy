@@ -27,7 +27,7 @@ DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # 使用scrapy-redis里的调度器组件，不使用默认的调度器
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 # 允许暂停，redis请求记录不丢失
-SCHEDULER_PERSIST = True
+SCHEDULER_PERSIST = False
 # 默认的scrapy-redis请求队列形式（按优先级）
 SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.LifoQueue"
 
@@ -36,7 +36,7 @@ REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay

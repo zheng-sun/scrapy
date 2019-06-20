@@ -121,3 +121,4 @@ $RECYCLE.BIN/
 
 .idea/*
 .idea/workspace.xml
+redis-3.0.1/*
