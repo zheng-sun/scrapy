@@ -9,6 +9,7 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+
 BOT_NAME = 'suning'
 
 SPIDER_MODULES = ['suning.spiders']
@@ -28,10 +29,14 @@ SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 # 允许暂停，redis请求记录不丢失
 SCHEDULER_PERSIST = True
 # 默认的scrapy-redis请求队列形式（按优先级）
-SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"
+SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.LifoQueue"
+
+# scrapy-redis 配置
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 1
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -61,9 +66,10 @@ DOWNLOAD_DELAY = 1
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'suning.middlewares.SuningDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'suning.SuningMiddlewares.ResponseMiddleware.SuningResponseMiddleware': 300,
+   'suning.middlewares.SuningDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -74,8 +80,8 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   #'suning.pipelines.SuningPipeline': 300,
-   'scrapy_redis.pipelines.RedisPipeline': 400,
+    #'scrapy_redis.pipelines.RedisPipeline': 400,
+    'suning.pipelines.SuningPipeline': 500,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -98,7 +104,3 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-
-# scrapy-redis 配置
-# REDIS_HOST = '127.0.0.1'
-# REDIS_PORT = 6379

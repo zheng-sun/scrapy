@@ -18,7 +18,7 @@ class SuningPipeline(object):
             port=3306,
             db='suning',
             user='root',
-            passwd='',
+            passwd='root',
             charset='utf8',
             use_unicode=True
         )
